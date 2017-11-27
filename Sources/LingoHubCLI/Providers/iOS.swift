@@ -11,7 +11,7 @@ import Foundation
 open class iOS: ResourceProvider {
 
   public var projectUrl: String {
-    return "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios/test"
+    return "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test"
     return "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios"
   }
 
@@ -22,27 +22,32 @@ open class iOS: ResourceProvider {
 
     // TODO: Read these paths from the config file
 
-    // Strings files from the English base translation
-    let stringsPath = FileManager
-      .default
-      .currentDirectoryPath + "/Bikemap/en.lproj/"
+    // Strings files from the English base translation.
+    // TODO: remove
+
+    let projectPath = "/Users/adameri/Developer/bikemap-x-ios"
+
+//    let projectPath = FileManager
+//      .default
+//      .currentDirectoryPath
+
+    let stringsPath = projectPath + "/Bikemap/en.lproj/"
 
     do {
       let allFilesInFolder = try fileManager
         .contentsOfDirectory(atPath: stringsPath)
 
       // Filtering only the strings files
-      stringsFiles = allFilesInFolder.filter {
-        $0.contains(".strings")
-      }
+      stringsFiles = allFilesInFolder
+        .filter { $0.contains(".strings") }
+        .map { stringsPath + $0 }
     } catch {
       print(error)
     }
 
     // Localizable.strings file from the Base translation
-    let localizableStringsPath = FileManager
-      .default
-      .currentDirectoryPath + "/Bikemap/Base.lproj/Localizable.strings"
+    let localizableStringsPath = projectPath +
+      "/Bikemap/Base.lproj/Localizable.strings"
     stringsFiles.append(localizableStringsPath)
 
     return stringsFiles

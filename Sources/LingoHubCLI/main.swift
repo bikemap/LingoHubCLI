@@ -56,10 +56,13 @@ fileprivate struct Config {
 open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   private var task: Task = .help
-  private var resourceProvider: ResourceProvider?
+  private var resourceProvider: ResourceProvider
 
   override public init() {
+
+    self.resourceProvider = iOS()
     super.init()
+    
     guard CommandLine.argc == 2 else {
       self.help()
       exit(EXIT_FAILURE)
@@ -96,15 +99,8 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   private func upload() {
 
-    guard let files = self.resourceProvider?.files else {
-      print("No local files are available.")
-      return
-    }
-
-    guard let projectUrl = self.resourceProvider?.projectUrl else {
-      print("No resource provider set")
-      return
-    }
+    let files = self.resourceProvider.files
+    let projectUrl = self.resourceProvider.projectUrl
 
     let uploadEndPoint = "\(projectUrl)/resources?auth_token=\(Config.token)"
     print(uploadEndPoint)
@@ -117,7 +113,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
           multipartFormData
             .append(fileUrl, withName: "file")
       },
-        to: projectUrl,
+        to: uploadEndPoint,
         encodingCompletion: { (encodingResult) in
           switch encodingResult {
           case .success(let upload, _, _):
