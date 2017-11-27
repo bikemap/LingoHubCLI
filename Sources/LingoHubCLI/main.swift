@@ -75,7 +75,7 @@ fileprivate struct Projects {
   public static let iOS =
   "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios"
   public static let iOSTest =
-  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test"
+  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources"
 }
 
 // MARK: - CLI
@@ -157,7 +157,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   private func upload() {
     var files: [String] = []
-    var projectUrlString: String = "?token=" + Config.token
+    var projectUrlString: String = "?auth_token=" + Config.token
 
     switch self.target {
     case .ios:
@@ -185,7 +185,44 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     for file in files {
       print(file)
 
+      let fullFilePath = URL(fileURLWithPath: self.projectPath!)
+        .appendingPathComponent(file)
 
+      Alamofire.upload(
+        multipartFormData: { multipartFormData in
+          multipartFormData
+            .append(fullFilePath, withName: "file")
+      },
+        to: projectUrl,
+        //        headers: [
+        //          "Content-Type": "application/x-www-form-urlencoded"
+        //        ],
+        encodingCompletion: { (encodingResult) in
+          switch encodingResult {
+          case .success(let upload, _, _):
+            upload.responseJSON { response in
+              debugPrint(response)
+            }
+          case .failure(let encodingError):
+            print(encodingError)
+          }
+      })
+
+      //      Alamofire.upload(
+      //        multipartFormData: { multipartFormData in
+      //          multipartFormData.append(file, withName: "file")
+      //        },
+      //        to: projectUrl,
+      //        encodingCompletion: { encodingResult in
+      //          switch encodingResult {
+      //          case .success(let upload, _, _):
+      //            upload.responseJSON { response in
+      //              debugPrint(response)
+      //            }
+      //          case .failure(let encodingError):
+      //            print(encodingError)
+      //          }
+      //        })
 
       //      var request = URLRequest(url: projectUrl)
       //      request.httpMethod = "POST"
