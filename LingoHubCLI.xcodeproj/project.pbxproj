@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0616464A1FCCC584009A03AD /* Android.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061646491FCCC584009A03AD /* Android.swift */; };
 		06E3853A1FCCB3CE00C7B752 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E385381FCCB3CE00C7B752 /* iOS.swift */; };
 		06E3853B1FCCB3CE00C7B752 /* ResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */; };
 		OBJ_104 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* AFError.swift */; };
@@ -66,6 +67,7 @@
 
 /* Begin PBXFileReference section */
 		061646481FCCBCF4009A03AD /* lingorc-sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lingorc-sample"; sourceTree = "<group>"; };
+		061646491FCCC584009A03AD /* Android.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Android.swift; sourceTree = "<group>"; };
 		06E385381FCCB3CE00C7B752 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
 		06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
 		"Alamofire::Alamofire::Product" /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				061646481FCCBCF4009A03AD /* lingorc-sample */,
 				06E385381FCCB3CE00C7B752 /* iOS.swift */,
 				06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */,
+				061646491FCCC584009A03AD /* Android.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				0616464A1FCCC584009A03AD /* Android.swift in Sources */,
 				06E3853B1FCCB3CE00C7B752 /* ResourceProvider.swift in Sources */,
 				06E3853A1FCCB3CE00C7B752 /* iOS.swift in Sources */,
 				OBJ_74 /* LingoHubResource.swift in Sources */,

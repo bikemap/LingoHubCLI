@@ -24,8 +24,11 @@ public protocol ResourceProvider {
   /// An array of file paths to be upladed and translated at LingoHub.
   var files: [String] { get }
 
-  /// A stuct mapped from the .lingorc.json file in the project folder
-  var config: ProviderConfig { get }
+  /// Reads the configuration file from the project folder, and maps the
+  /// the contents into a `ProviderConfig` struct.
+  /// In case of any problems with reading the config, the appliction will
+  /// exit with failure.
+  var config: ProviderConfig { get set }
 
   /// The `save` method receives a `LingoHubResource` mapped from the JSON
   /// response from LingoHub. The workflow of downloading and storing these
@@ -33,7 +36,9 @@ public protocol ResourceProvider {
   ///
   /// - Parameter resource: The mapped LingoHubResource
   /// - Throws: Throws an error if the download or storing of any file fails.
-  func save(resource: LingoHubResource) throws
+  func save(resources: [LingoHubResource]) throws
+
+  init(configuration: ProviderConfig)
 }
 
 public enum Platform {
@@ -54,15 +59,19 @@ public struct ProviderConfig: Unmarshaling {
   public var platform: Platform
   public var team: String
   public var project: String
+  public var token: String
   public var projectPath: String?
   public var stringsFolder: String?
   public var stringsFiles: [String]
+
+  // TODO: import settings
 
   public init(object: MarshaledObject) throws {
     let platform: String = try object.value(for: "platform")
     self.platform = Platform(value: platform)
     self.team = try object.value(for: "team")
     self.project = try object.value(for: "project")
+    self.token = try object.value(for: "token")
     self.projectPath = try? object.value(for: "projectPath")
     self.stringsFolder = try? object.value(for: "stringsFolder")
     self.stringsFiles = try object.value(for: "stringsFiles")

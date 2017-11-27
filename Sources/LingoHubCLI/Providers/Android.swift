@@ -1,14 +1,14 @@
 //
-//  iOS.swift
+//  Android.swift
 //  LingoHubCLI
 //
 //  Created by Adam Eri on 27.11.17.
-//  Copyright © 2017 Bikemap GmbH. All rights reserved.
 //
 
 import Foundation
 
-open class iOS: ResourceProvider {
+
+open class Android: ResourceProvider {
 
   public var config: ProviderConfig
 
@@ -19,7 +19,7 @@ open class iOS: ResourceProvider {
   public var projectUrl: String {
     let url =
       "https://api.lingohub.com/v1/\(self.config.team)/projects/" +
-      self.config.project
+        self.config.project
     return url
   }
 
@@ -43,7 +43,7 @@ open class iOS: ResourceProvider {
 
         // Filtering only the strings files
         stringsFiles = allFilesInFolder
-          .filter { $0.contains(".strings") }
+          .filter { $0.contains(".xml") }
           .map { stringsFolderPath + $0 }
       } catch {
         print(error)

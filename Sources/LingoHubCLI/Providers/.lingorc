@@ -2,6 +2,7 @@
   "platform": "ios",
   "team": "bikemap-gmbh",
   "project": "ios-test",
+  "token": "your-token",
   "projectPath": "/Users/adameri/Developer/bikemap-x-ios",
   "stringsFolder":"/Bikemap/en.lproj/",
   "stringsFiles": [
