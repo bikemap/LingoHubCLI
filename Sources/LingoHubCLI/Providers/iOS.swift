@@ -10,9 +10,41 @@ import Foundation
 
 open class iOS: ResourceProvider {
 
+  public var _config: ProviderConfig?
+
+  public var config: ProviderConfig {
+
+    if self._config != nil {
+      return self._config!
+    }
+
+    let currentDirectory = FileManager
+      .default
+      .currentDirectoryPath
+    let file = URL(fileURLWithPath: "\(currentDirectory)/.lingorc")
+
+    do {
+      let data = try Data(contentsOf: file)
+      let json = try JSONSerialization.jsonObject(with: data, options: [])
+
+      guard let object = json as? [AnyHashable: Any] else {
+        print("Cannot read config .lingorc file.")
+        exit(EXIT_FAILURE)
+      }
+
+      self._config = try ProviderConfig(object: object)
+      return self._config!
+    } catch {
+      print(error)
+      exit(EXIT_FAILURE)
+    }
+  }
+
   public var projectUrl: String {
-    return "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test"
-    return "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios"
+    let url =
+      "https://api.lingohub.com/v1/\(self.config.team)/projects/" +
+      self.config.project
+    return url
   }
 
   public var files: [String] {
@@ -20,35 +52,31 @@ open class iOS: ResourceProvider {
     let fileManager = FileManager()
     var stringsFiles: [String] = []
 
-    // TODO: Read these paths from the config file
-
     // Strings files from the English base translation.
-    // TODO: remove
+    // If `projectPath` is specified from there, if not, then the
+    // current directory
+    let projectPath = self.config.projectPath ??
+      FileManager.default.currentDirectoryPath
 
-    let projectPath = "/Users/adameri/Developer/bikemap-x-ios"
+    // Reading all string files if folder path is specified
+    if let stringsFolder = self.config.stringsFolder {
+      let stringsFolderPath = projectPath + stringsFolder
+      do {
+        let allFilesInFolder = try fileManager
+          .contentsOfDirectory(atPath: stringsFolderPath)
 
-//    let projectPath = FileManager
-//      .default
-//      .currentDirectoryPath
-
-    let stringsPath = projectPath + "/Bikemap/en.lproj/"
-
-    do {
-      let allFilesInFolder = try fileManager
-        .contentsOfDirectory(atPath: stringsPath)
-
-      // Filtering only the strings files
-      stringsFiles = allFilesInFolder
-        .filter { $0.contains(".strings") }
-        .map { stringsPath + $0 }
-    } catch {
-      print(error)
+        // Filtering only the strings files
+        stringsFiles = allFilesInFolder
+          .filter { $0.contains(".strings") }
+          .map { stringsFolderPath + $0 }
+      } catch {
+        print(error)
+      }
     }
 
-    // Localizable.strings file from the Base translation
-    let localizableStringsPath = projectPath +
-      "/Bikemap/Base.lproj/Localizable.strings"
-    stringsFiles.append(localizableStringsPath)
+    for stringFile in self.config.stringsFiles {
+      stringsFiles.append(projectPath + stringFile)
+    }
 
     return stringsFiles
   }

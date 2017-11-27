@@ -1,0 +1,10 @@
+{
+  "platform": "ios",
+  "team": "bikemap-gmbh",
+  "project": "ios-test",
+  "projectPath": "/Users/adameri/Developer/bikemap-x-ios",
+  "stringsFolder":"/Bikemap/en.lproj/",
+  "stringsFiles": [
+    "/Bikemap/Base.lproj/Localizable.strings"
+  ]
+}

@@ -65,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		061646481FCCBCF4009A03AD /* lingorc-sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lingorc-sample"; sourceTree = "<group>"; };
 		06E385381FCCB3CE00C7B752 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
 		06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
 		"Alamofire::Alamofire::Product" /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +137,7 @@
 		06E385371FCCB3CE00C7B752 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				061646481FCCBCF4009A03AD /* lingorc-sample */,
 				06E385381FCCB3CE00C7B752 /* iOS.swift */,
 				06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */,
 			);
@@ -215,7 +217,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -224,7 +226,6 @@
 				OBJ_13 /* Dependencies */,
 				OBJ_47 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -356,7 +357,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_47 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
