@@ -3,20 +3,20 @@
 //  LingoHubCLI
 //
 //  Created by Adam Eri on 27.11.17.
-//  Copyright © 2017 blackmirror media. All rights reserved.
+//  blackmirror media
 //
 
 import Foundation
 import Alamofire
 
-/// The JOBs that can be performed using LungoHub. This can be specified as
+/// The TASKs that can be performed using LungoHub. This can be specified as
 /// the first command line option. If missing or cannot be found, it defaults
 /// to `help` which displays the usage of the tool.
 ///
 /// - upload: Upload translation files.
 /// - download: Download translation file.
 /// - help: Display usage of the CLI.
-public enum Job {
+public enum Task {
   case upload
   case download
   case help
@@ -34,34 +34,6 @@ public enum Job {
   }
 }
 
-/// The available TARGETs for the JOBs. This can be specified as
-/// the second command line option. If missing or cannot be found, it defaults
-/// to `help` which displays the usage of the tool.
-///
-/// - android: Selects the Android workflow.
-/// - ios: Selects the iOS workflow.
-/// - iosTest: Selects the iOS test workflow.
-/// - help: Display usage of the CLI.
-public enum Target {
-  case android
-  case ios
-  case iosTest
-  case help
-
-  init(value: String?) {
-    guard value != nil else {
-      self = .help
-      return
-    }
-    switch value! {
-    case "android": self = .android
-    case "ios": self = .ios
-    case "iosTest": self = .iosTest
-    default: self = .help
-    }
-  }
-}
-
 /// Configuration of the LungoHub API
 fileprivate struct Config {
   public static let token =
@@ -69,65 +41,38 @@ fileprivate struct Config {
 }
 
 /// Projects available on LingoHub
-fileprivate struct Projects {
-  public static let android =
-  "https://api.lingohub.com/v1/bikemap-gmbh/projects/android"
-  public static let iOS =
-  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios"
-  public static let iOSTest =
-  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources"
-}
+//fileprivate struct Projects {
+//  public static let android =
+//  "https://api.lingohub.com/v1/bikemap-gmbh/projects/android"
+//  public static let iOS =
+//  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios"
+//  public static let iOSTest =
+//  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources"
+//}
 
 // MARK: - CLI
 
 /// This is the LingoHubCLI class, wrapping all functions of the tool
 open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
-  private var job: Job = .help
-  private var target: Target = .help
-  private var projectPath: String?
-  private var session: URLSession?
+  private var task: Task = .help
+  private var resourceProvider: ResourceProvider?
 
   override public init() {
     super.init()
-    if CommandLine.argc < 4 {
+    guard CommandLine.argc == 2 else {
       self.help()
       exit(EXIT_FAILURE)
-    } else {
-      self.parseOptions()
-    }
-  }
-
-  /// Parses the command line options and mathces them to the available
-  /// JOBs and TARGETs and the project path. The exectution of the workflow
-  /// depends on these two parameters.
-  ///
-  /// - Returns: A tuple with the matched Enums for JOB and TARGET.
-  private func parseOptions() {
-    self.job = Job(value: CommandLine.arguments[1])
-    self.target = Target(value: CommandLine.arguments[2])
-
-    guard let path = CommandLine
-      .arguments[3]
-      .components(separatedBy: "=")
-      .last else {
-        print("Project path not spedicifed.")
-        // TODO: Check if folder/file exists
-        self.help()
-        exit(EXIT_FAILURE)
     }
 
-    self.projectPath = path
-
-    print(self.job, self.target, self.projectPath)
+    self.task = Task(value: CommandLine.arguments[1])
   }
 
   /// Prints usage information to the console.
   private func help() {
     print(
-      "Possible jobs: [upload|download]",
-      "\nPossible targets: [ios|android|iosTest]",
-      "\n\nExample: $ LingoHubCLI upload ios",
+      "Possible tasks: [upload|download]",
+      "\n\nExample: $ LingoHubCLI upload",
       "\n\n")
   }
 
@@ -135,12 +80,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   public func engage() {
 
-    self.session = URLSession(
-      configuration: URLSessionConfiguration.default,
-      delegate: self,
-      delegateQueue: OperationQueue.main)
-
-    switch self.job {
+    switch self.task {
     case .download:
       self.download()
     case .upload:
@@ -154,49 +94,30 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   }
 
-
   private func upload() {
-    var files: [String] = []
-    var projectUrlString: String = "?auth_token=" + Config.token
 
-    switch self.target {
-    case .ios:
-      files = self.iOSFiles()
-      projectUrlString = Projects.iOS + projectUrlString
-
-    case .iosTest:
-      files = self.iOSTestFiles()
-      projectUrlString = Projects.iOSTest + projectUrlString
-
-    case .android:
-      files = self.androidFiles()
-      projectUrlString = Projects.android + projectUrlString
-
-    case .help:
-      self.help()
+    guard let files = self.resourceProvider?.files else {
+      print("No local files are available.")
+      return
     }
 
-    guard let projectUrl = URL(string: projectUrlString) else {
-      print("projectUrl not specified")
-      exit(EXIT_FAILURE)
+    guard let projectUrl = self.resourceProvider?.projectUrl else {
+      print("No resource provider set")
+      return
     }
 
+    let uploadEndPoint = "\(projectUrl)/resources?auth_token=\(Config.token)"
+    print(uploadEndPoint)
 
     for file in files {
-      print(file)
-
-      let fullFilePath = URL(fileURLWithPath: self.projectPath!)
-        .appendingPathComponent(file)
+      let fileUrl = URL(fileURLWithPath: file)
 
       Alamofire.upload(
         multipartFormData: { multipartFormData in
           multipartFormData
-            .append(fullFilePath, withName: "file")
+            .append(fileUrl, withName: "file")
       },
         to: projectUrl,
-        //        headers: [
-        //          "Content-Type": "application/x-www-form-urlencoded"
-        //        ],
         encodingCompletion: { (encodingResult) in
           switch encodingResult {
           case .success(let upload, _, _):
@@ -207,83 +128,8 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
             print(encodingError)
           }
       })
-
-      //      Alamofire.upload(
-      //        multipartFormData: { multipartFormData in
-      //          multipartFormData.append(file, withName: "file")
-      //        },
-      //        to: projectUrl,
-      //        encodingCompletion: { encodingResult in
-      //          switch encodingResult {
-      //          case .success(let upload, _, _):
-      //            upload.responseJSON { response in
-      //              debugPrint(response)
-      //            }
-      //          case .failure(let encodingError):
-      //            print(encodingError)
-      //          }
-      //        })
-
-      //      var request = URLRequest(url: projectUrl)
-      //      request.httpMethod = "POST"
-      //      request.addValue(
-      //        "multipart/form-data",
-      //        forHTTPHeaderField: "Content-Type")
-      //
-      //      print("Request:", request)
-      //
-      //      let uploadTask = self
-      //        .session?
-      //        .uploadTask(
-      //          with: request,
-      //          fromFile: URL(fileURLWithPath: file),
-      //          completionHandler: { (data, response, error) in
-      //            print(data)
-      //            print(response)
-      //            print(error)
-      //        })
-      //
-      //      uploadTask?.resume()
     }
-
   }
-
-  // MARK: iOS
-
-  private func iOSFiles() -> [String] {
-    return []
-  }
-
-  private func iOSTestFiles() -> [String] {
-    guard let projectPath = self.projectPath else {
-      print("ProjectPath not specified")
-      return []
-    }
-
-    var stringsFiles: [String] = []
-    let fileManager: FileManager = FileManager()
-
-    do {
-      let files = try fileManager.contentsOfDirectory(atPath: projectPath)
-      stringsFiles = files.filter {
-        $0.contains(".strings")
-      }
-    } catch {
-      print(error)
-      exit(EXIT_FAILURE)
-    }
-
-    return stringsFiles
-  }
-
-  // MARK: Android
-  private func androidFiles() -> [String] {
-    return []
-  }
-
-
-  // MARK: URLSessionDelegate
-
 }
 
 // Start

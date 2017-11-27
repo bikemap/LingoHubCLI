@@ -28,6 +28,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Marshal::Marshal"
+               BuildableName = "Marshal.framework"
+               BlueprintName = "Marshal"
+               ReferencedContainer = "container:LingoHubCLI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "Alamofire::Alamofire"
                BuildableName = "Alamofire.framework"
                BlueprintName = "Alamofire"

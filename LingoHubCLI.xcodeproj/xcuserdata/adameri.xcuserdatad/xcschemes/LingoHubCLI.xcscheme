@@ -68,14 +68,6 @@
             argument = "upload"
             isEnabled = "YES">
          </CommandLineArgument>
-         <CommandLineArgument
-            argument = "iosTest"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "/Users/adameri/Developer/bikemap-x-ios/Bikemap/en.lproj"
-            isEnabled = "YES">
-         </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
