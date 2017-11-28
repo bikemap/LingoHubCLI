@@ -84,8 +84,10 @@ open class iOS: ResourceProvider {
       let name = resource
         .name
         .replacingOccurrences(
-          of: ".\(locale).strings",
-          with: ".strings")
+          of: "\(self.config.separator)\(locale).strings",
+          with: ".strings",
+          options: String.CompareOptions.caseInsensitive,
+          range: nil)
 
       // Making the download destination
 

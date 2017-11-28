@@ -35,16 +35,6 @@ public enum Task {
   }
 }
 
-/// Projects available on LingoHub
-//fileprivate struct Projects {
-//  public static let android =
-//  "https://api.lingohub.com/v1/bikemap-gmbh/projects/android"
-//  public static let iOS =
-//  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios"
-//  public static let iOSTest =
-//  "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources"
-//}
-
 // MARK: - CLI
 
 /// This is the LingoHubCLI class, wrapping all functions of the tool
@@ -163,10 +153,9 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     let resourcesEndPoint = "\(projectUrl)/resources?auth_token=" +
       self.resourceProvider.config.token
 
-    print(resourcesEndPoint)
-
     for file in files {
       let fileUrl = URL(fileURLWithPath: file)
+      print("Uploading: \(file)")
 
       Alamofire.upload(
         multipartFormData: { multipartFormData in
@@ -178,7 +167,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
           switch encodingResult {
           case .success(let upload, _, _):
             upload.responseJSON { response in
-              debugPrint(response)
+
               uploadCount += 1
               if uploadCount >= files.count {
                 print("All files uploaded.")
@@ -201,55 +190,6 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 // Start
 let cli = LingoHubCLI()
 cli.engage()
+
+// The application will run until exit() is called.
 dispatchMain()
-
-// GET /v1/projects
-// curl -X GET https://api.lingohub.com/v1/projects.json?auth_token=564c23254e56682f0f8ccca2758398d0e1fe812f28657a02e9f5cd1357354bc0
-
-// GET /v1/:account/projects/:project
-// curl -X GET https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test?auth_token=564c23254e56682f0f8ccca2758398d0e1fe812f28657a02e9f5cd1357354bc0
-
-// ## Resources
-// GET /v1/:account/projects/:project/resources
-// curl -X GET https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources?auth_token=564c23254e56682f0f8ccca2758398d0e1fe812f28657a02e9f5cd1357354bc0
-//{
-//  "members": [
-//  {
-//  "name": "Ride.de.strings",
-//  "links": [
-//  {
-//  "rel": "self",
-//  "href": "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources/Ride.de.strings",
-//  "type": "text/plain"
-//  }
-//  ],
-//  "project_locale": "de"
-//  },
-//  {
-//  "name": "Ride.en.strings",
-//  "links": [
-//  {
-//  "rel": "self",
-//  "href": "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources/Ride.en.strings",
-//  "type": "text/plain"
-//  }
-//  ],
-//  "project_locale": "en"
-//  }
-//  ],
-//  "links": [
-//  {
-//  "rel": "self",
-//  "href": "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources"
-//  }
-//  ]
-//}
-
-// ## Upload
-// POST /v1/:account/projects/:project/resources
-// curl -X POST https://api.lingohub.com/v1/projects/ios-test/resources?auth_token=564c23254e56682f0f8ccca2758398d0e1fe812f28657a02e9f5cd1357354bc0  -F "iso2_slug=en" -F "path=en.lproj/" -F "file=@/path/to/file/Localizable.strings"
-
-// ## Download
-// GET /v1/:account/projects/:project/resources/:filename
-// GET "https://api.lingohub.com/v1/bikemap-gmbh/projects/ios-test/resources/Ride.en.strings"
-

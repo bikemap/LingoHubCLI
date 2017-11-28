@@ -5,5 +5,6 @@
   "token": "your-token",
   "projectFolder": "/Users/adameri/Developer/bikemap-x-ios/",
   "translationFolder": "Bikemap/",
-  "baseLocale": "en"
+  "baseLocale": "en",
+  "separator": "_"
 }

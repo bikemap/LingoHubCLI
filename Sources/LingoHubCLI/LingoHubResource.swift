@@ -48,7 +48,7 @@ public struct LingoHubResource: Unmarshaling {
 
   public init(object: MarshaledObject) throws {
     self.name = try object.value(for: "name")
-    self.locale = try object.value(for: "project_locale")
+    self.locale  = try object.value(for: "project_locale")
     self.links = try object.value(for: "links")
   }
 }

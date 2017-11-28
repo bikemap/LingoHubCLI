@@ -65,6 +65,7 @@ public struct ProviderConfig: Unmarshaling {
   public var projectFolder: String?
   public var translationFolder: String?
   public var baseLocale: String
+  public var separator: String = "_"
 
   // TODO: lingohub import settings
 
@@ -77,5 +78,6 @@ public struct ProviderConfig: Unmarshaling {
     self.projectFolder = try? object.value(for: "projectFolder")
     self.translationFolder = try? object.value(for: "translationFolder")
     self.baseLocale = try object.value(for: "baseLocale")
+    self.separator = try object.value(for: "separator")
   }
 }
