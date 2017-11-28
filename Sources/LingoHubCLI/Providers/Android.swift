@@ -57,7 +57,9 @@ open class Android: ResourceProvider {
     return stringsFiles
   }
 
-  public func save(resources: [LingoHubResource]) throws {
+  public func save(
+    resources: [LingoHubResource],
+    completion: @escaping (() -> Void)) {
 
   }
 }

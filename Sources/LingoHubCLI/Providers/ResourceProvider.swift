@@ -34,9 +34,11 @@ public protocol ResourceProvider {
   /// response from LingoHub. The workflow of downloading and storing these
   /// files are implemented here.
   ///
-  /// - Parameter resource: The mapped LingoHubResource
-  /// - Throws: Throws an error if the download or storing of any file fails.
-  func save(resources: [LingoHubResource]) throws
+  /// - Parameters:
+  ///   - resources: The list of mapped LingoHubResources
+  ///   - completion: Called when all download operations are completed.
+  /// Regardless of success.
+  func save(resources: [LingoHubResource], completion: @escaping (() -> Void))
 
   init(configuration: ProviderConfig)
 }

@@ -115,7 +115,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     }
   }
 
-  // MARK: API Implementation
+  // MARK: - API Implementation
 
   private func download() {
     let config = self.resourceProvider.config
@@ -133,7 +133,12 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
         do {
           let resources: [LingoHubResource] = try json.value(for: "members")
           // Saving resources locally
-          try self.resourceProvider.save(resources: resources)
+          self
+            .resourceProvider
+            .save(resources: resources) {
+              print("All files are downloaded.")
+              exit(EXIT_SUCCESS)
+            }
         } catch {
           print(error)
           exit(EXIT_FAILURE)
@@ -141,11 +146,10 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     }
   }
 
-  private var uploadCount: Int = 0
-
   /// Uploads the files returned by the provider to LingoHub for translation
   private func upload() {
 
+    var uploadCount: Int = 0
     let files = self.resourceProvider.files
 
     guard files.count > 0 else {
@@ -175,16 +179,16 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
           case .success(let upload, _, _):
             upload.responseJSON { response in
               debugPrint(response)
-              self.uploadCount += 1
-              if self.uploadCount >= files.count {
+              uploadCount += 1
+              if uploadCount >= files.count {
                 print("All files uploaded.")
                 exit(EXIT_SUCCESS)
               }
             }
           case .failure(let encodingError):
             print(encodingError)
-            self.uploadCount += 1
-            if self.uploadCount >= files.count {
+            uploadCount += 1
+            if uploadCount >= files.count {
               print("All files uploaded.")
               exit(EXIT_SUCCESS)
             }

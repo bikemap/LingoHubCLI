@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 open class iOS: ResourceProvider {
 
@@ -59,7 +60,76 @@ open class iOS: ResourceProvider {
     return stringsFiles
   }
 
-  public func save(resources: [LingoHubResource]) throws {
-//    self.config.projectPath + self.config.stringsFolder
+
+  public func save(
+    resources: [LingoHubResource],
+    completion: @escaping (() -> Void)) {
+
+    var downloadCount: Int = 0
+
+    for resource in resources {
+      guard let downloadUrl = resource.links.first?.href else {
+        print("No download url for resource: \(resource)")
+        continue
+      }
+
+      let locale = resource.locale
+      // We do not download the base locale.
+      guard locale != self.config.baseLocale else {
+        continue
+      }
+
+      // Removing locale from the resource name
+      // Localizable.de.strings -> Localizable.strings
+      let name = resource
+        .name
+        .replacingOccurrences(
+          of: ".\(locale).strings",
+          with: ".strings")
+
+      // Making the download destination
+
+      // The config can specify:
+      // - an optional absolute `projectFolder`, defaults to the current folder.
+      // - an optional `translationFolder` within the `projectFolder`
+      // - a mandatory `baseLocale`, from which the `lproj` folder can be found
+      var destinationFolder = config.projectFolder ??
+        FileManager.default.currentDirectoryPath
+      
+      // `translationFolder`
+      if config.translationFolder != nil {
+        destinationFolder += config.translationFolder!
+      }
+      
+      // `locale` and name
+      destinationFolder += "/\(locale).lproj/\(name)"
+
+      let destinationUrl = URL(fileURLWithPath: destinationFolder)
+
+      let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+        return (destinationUrl, [
+          .removePreviousFile,
+          .createIntermediateDirectories])
+      }
+
+      downloadCount += 1
+
+      Alamofire
+        .download(
+          downloadUrl + "?auth_token=" + self.config.token,
+          to: destination)
+        .response { response in
+
+          if response.error == nil,
+            let filePath = response.destinationURL?.path {
+            print("Downloaded: ", filePath)
+          }
+
+          downloadCount -= 1
+          if downloadCount == 0 {
+            completion()
+          }
+      }
+    }
   }
 }
