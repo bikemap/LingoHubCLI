@@ -133,7 +133,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
         do {
           let resources: [LingoHubResource] = try json.value(for: "members")
           // Saving resources locally
-          self.resourceProvider.save(resources: resources)
+          try self.resourceProvider.save(resources: resources)
         } catch {
           print(error)
           exit(EXIT_FAILURE)
@@ -147,6 +147,14 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
   private func upload() {
 
     let files = self.resourceProvider.files
+
+    guard files.count > 0 else {
+      print(
+        "No translation files found with config: ",
+        self.resourceProvider.config)
+      exit(EXIT_FAILURE)
+    }
+
     let projectUrl = self.resourceProvider.projectUrl
     let resourcesEndPoint = "\(projectUrl)/resources?auth_token=" +
       self.resourceProvider.config.token

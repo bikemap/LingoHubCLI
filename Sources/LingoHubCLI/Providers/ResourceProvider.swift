@@ -60,11 +60,11 @@ public struct ProviderConfig: Unmarshaling {
   public var team: String
   public var project: String
   public var token: String
-  public var projectPath: String?
-  public var stringsFolder: String?
-  public var stringsFiles: [String]
+  public var projectFolder: String?
+  public var translationFolder: String?
+  public var baseLocale: String
 
-  // TODO: import settings
+  // TODO: lingohub import settings
 
   public init(object: MarshaledObject) throws {
     let platform: String = try object.value(for: "platform")
@@ -72,8 +72,8 @@ public struct ProviderConfig: Unmarshaling {
     self.team = try object.value(for: "team")
     self.project = try object.value(for: "project")
     self.token = try object.value(for: "token")
-    self.projectPath = try? object.value(for: "projectPath")
-    self.stringsFolder = try? object.value(for: "stringsFolder")
-    self.stringsFiles = try object.value(for: "stringsFiles")
+    self.projectFolder = try? object.value(for: "projectFolder")
+    self.translationFolder = try? object.value(for: "translationFolder")
+    self.baseLocale = try object.value(for: "baseLocale")
   }
 }

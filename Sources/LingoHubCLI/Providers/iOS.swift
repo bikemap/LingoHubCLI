@@ -27,37 +27,39 @@ open class iOS: ResourceProvider {
 
     let fileManager = FileManager()
     var stringsFiles: [String] = []
+    let config = self.config
 
-    // Strings files from the English base translation.
-    // If `projectPath` is specified from there, if not, then the
-    // current directory
-    let projectPath = self.config.projectPath ??
+    // The config can specify:
+    // - an optional absolute `projectFolder`, defaults to the current folder.
+    // - an optional `translationFolder` within the `projectFolder`
+    // - a mandatory `baseLocale`, from which the `lproj` folder can be found
+    var stringsFolder = config.projectFolder ??
       FileManager.default.currentDirectoryPath
 
+    // `translationFolder`
+    if config.translationFolder != nil {
+      stringsFolder += config.translationFolder!
+    }
+
+    // `baseLocale`
+    stringsFolder += "/\(config.baseLocale).lproj/"
+
     // Reading all string files if folder path is specified
-    if let stringsFolder = self.config.stringsFolder {
-      let stringsFolderPath = projectPath + stringsFolder
-      do {
-        let allFilesInFolder = try fileManager
-          .contentsOfDirectory(atPath: stringsFolderPath)
+    do {
+      let allFilesInFolder = try fileManager
+        .contentsOfDirectory(atPath: stringsFolder)
 
-        // Filtering only the strings files
-        stringsFiles = allFilesInFolder
-          .filter { $0.contains(".strings") }
-          .map { stringsFolderPath + $0 }
-      } catch {
-        print(error)
-      }
+      // Filtering only the strings files
+      stringsFiles = allFilesInFolder
+        .filter { $0.contains(".strings") }
+        .map { stringsFolder + $0 }
+    } catch {
+      print(error)
     }
-
-    for stringFile in self.config.stringsFiles {
-      stringsFiles.append(projectPath + stringFile)
-    }
-
     return stringsFiles
   }
 
   public func save(resources: [LingoHubResource]) throws {
-
+//    self.config.projectPath + self.config.stringsFolder
   }
 }
