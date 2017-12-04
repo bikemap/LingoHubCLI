@@ -89,7 +89,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
   private static func help() {
     print(
       "Possible tasks: [upload|download]",
-      "\n\nExample: $ LingoHubCLI upload",
+      "\n\nExample: $ lingohub upload",
       "\n\n")
   }
 

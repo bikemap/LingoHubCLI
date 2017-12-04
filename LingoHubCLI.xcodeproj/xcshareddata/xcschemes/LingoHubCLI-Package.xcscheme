@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "LingoHubCLI::LingoHubCLI"
-               BuildableName = "LingoHubCLI"
+               BuildableName = "lingohub"
                BlueprintName = "LingoHubCLI"
                ReferencedContainer = "container:LingoHubCLI.xcodeproj">
             </BuildableReference>
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "LingoHubCLI::LingoHubCLI"
-            BuildableName = "LingoHubCLI"
+            BuildableName = "lingohub"
             BlueprintName = "LingoHubCLI"
             ReferencedContainer = "container:LingoHubCLI.xcodeproj">
          </BuildableReference>
