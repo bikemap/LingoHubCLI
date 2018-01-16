@@ -33,7 +33,7 @@ LingoHub and places them in the proper folder.
 The configuration is done using the `.lingorc` file in the project root folder.
 
 | Property | Description |
-|:-------------------:|----------------------------------------------------------------------------------------------------------------------------------------|
+|-------------------|----------------------------------------------------------------------------------------------------------------------------------------|
 | `platform` | `ios`, `android` Specifies the platform of the project. File locations and naming conventions depend on this. |
 | `team` | The slug of the team from LingoHub. For instance: `"bikemap-gmbh"` |
 | `project` | The slug of the project name from LingoHub. For instance: 'ios-test' |
@@ -51,12 +51,24 @@ Example `.lingorc`:
   "team": "bikemap-gmbh",
   "project": "android-test",
   "token": "your-token",
-  "projectFolder": "/Users/adameri/Developer/bikemap-x-android/",
+  "projectFolder": "/Users/path/to/projet/folder/",
   "translationFolder": "app/src/main/res",
   "baseLocale": "en",
-  "separator": "-"
+  "separator": "_"
 }
 ```
+
+## Naming Convention
+
+According to LingoHub documentation, we put the locale in the files names, 
+for instance: `Localizable_zh-Hans-CN.strings` or
+`BMRideStartBottomBarView_it.strings"`. The locale is then recognised by 
+LingoHub automatically.
+
+The locale format is depending on the platform (e.g. simplified Chinese
+on iOS is `zh-Hans-CN`). Then you define your separator (`_` in the above
+example) to work with your local files and folders. The script 
+
 
 ## Build & Distribution
 
@@ -73,7 +85,7 @@ $ cp ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI ./lingohub
 Or to install globally:
 
 ```
-$ cp -f ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI  /usr/local/bin/lingohub
+$ cp -f ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI   
 ```
 
 ## Contribution

@@ -70,7 +70,16 @@ open class Android: ResourceProvider {
         continue
       }
 
-      let locale = resource.locale
+      // The project locale and the locale in the filename are differnet for
+      // Android.
+      // "project_locale": "zh-TW" vs. "name": "strings-zh-rTW.xml",
+      // So for this we need to use the filename (minus the .xml) for the
+      // folder name.
+      let locale = resource
+        .name
+        .replacingOccurrences(of: "strings-", with: "")
+        .replacingOccurrences(of: ".xml", with: "")
+
       // We do not download the base locale.
       guard locale != self.config.baseLocale else {
         continue
