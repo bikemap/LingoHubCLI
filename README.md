@@ -28,6 +28,17 @@ $ lingohub download
 The tool downloads all available translated resources of the project from 
 LingoHub and places them in the proper folder.
 
+## Installation
+
+See Build & Distribution section below for building the tool from source.
+
+For easy install on macOS, find the latest binary in the 
+[release section](https://github.com/bikemap/LingoHubCLI/releases). 
+
+Use the tool locally in your project folder or copy it to `/usr/local/bin/` for
+global access.
+
+
 ## Configuration
 
 The configuration is done using the `.lingorc` file in the project root folder.
