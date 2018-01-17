@@ -21,6 +21,7 @@ public enum Task {
   case upload
   case download
   case help
+  case version
 
   init(value: String?) {
     guard value != nil else {
@@ -30,6 +31,7 @@ public enum Task {
     switch value! {
     case "upload": self = .upload
     case "download": self = .download
+    case "-v": self = .version
     default: self = .help
     }
   }
@@ -39,6 +41,8 @@ public enum Task {
 
 /// This is the LingoHubCLI class, wrapping all functions of the tool
 open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
+
+  private static let version: String = "1.0.0"
 
   private var task: Task = .help
   private var resourceProvider: ResourceProvider
@@ -52,6 +56,11 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     // Task
     self.task = Task(value: CommandLine.arguments[1])
+
+    if self.task == .version {
+      LingoHubCLI.printVersion()
+      exit(EXIT_SUCCESS)
+    }
 
     // Reading the provider config
     let currentDirectory = FileManager
@@ -88,9 +97,16 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
   /// Prints usage information to the console.
   private static func help() {
     print(
-      "Possible tasks: [upload|download]",
-      "\n\nExample: $ LingoHubCLI upload",
+      "Possible tasks are upload and download.",
+      "\nExample: $ lingohub upload",
       "\n\n")
+  }
+
+  /// Prints the current version to the console.
+  private static func printVersion() {
+    print(
+      "lingohub swift command line tool:\nVersion \(self.version)",
+      "\n2018. Bikemap GmbH - https://github.com/bikemap\n")
   }
 
   public func engage() {

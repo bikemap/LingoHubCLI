@@ -71,7 +71,7 @@
 		06E385381FCCB3CE00C7B752 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
 		06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
 		"Alamofire::Alamofire::Product" /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		"LingoHubCLI::LingoHubCLI::Product" /* LingoHubCLI */ = {isa = PBXFileReference; lastKnownFileType = text; path = LingoHubCLI; sourceTree = BUILT_PRODUCTS_DIR; };
+		"LingoHubCLI::LingoHubCLI::Product" /* lingohub */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = lingohub; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Marshal::Marshal::Product" /* Marshal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		OBJ_10 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		OBJ_15 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/adameri/Developer/LingoHubCLI/.build/checkouts/Marshal.git-4636753813148167307/Package.swift"; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 		OBJ_47 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"LingoHubCLI::LingoHubCLI::Product" /* LingoHubCLI */,
+				"LingoHubCLI::LingoHubCLI::Product" /* lingohub */,
 				"Marshal::Marshal::Product" /* Marshal.framework */,
 				"Alamofire::Alamofire::Product" /* Alamofire.framework */,
 			);
@@ -298,7 +298,7 @@
 			);
 			name = LingoHubCLI;
 			productName = LingoHubCLI;
-			productReference = "LingoHubCLI::LingoHubCLI::Product" /* LingoHubCLI */;
+			productReference = "LingoHubCLI::LingoHubCLI::Product" /* lingohub */;
 			productType = "com.apple.product-type.tool";
 		};
 		"LingoHubCLI::SwiftPMPackageDescription" /* LingoHubCLIPackageDescription */ = {
@@ -352,6 +352,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"LingoHubCLI::LingoHubCLI" = {
+						DevelopmentTeam = G9EB5WLV5Z;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "LingoHubCLI" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -525,7 +531,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -546,7 +552,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_OPTIMIZATION_LEVEL = s;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -614,6 +620,9 @@
 		OBJ_71 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G9EB5WLV5Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -621,8 +630,11 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LingoHubCLI.xcodeproj/LingoHubCLI_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = lingohub;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 4.0;
@@ -633,6 +645,9 @@
 		OBJ_72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = G9EB5WLV5Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -640,8 +655,11 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LingoHubCLI.xcodeproj/LingoHubCLI_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = lingohub;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 4.0;
