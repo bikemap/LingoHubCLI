@@ -85,7 +85,7 @@ $ cp ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI ./lingohub
 Or to install globally:
 
 ```
-$ cp -f ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI   
+$ cp -f ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI /usr/local/bin/lingohub
 ```
 
 ## Contribution
