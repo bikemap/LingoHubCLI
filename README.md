@@ -60,6 +60,8 @@ Example `.lingorc`:
 
 ## Naming Convention
 
+### iOS
+
 According to LingoHub documentation, we put the locale in the files names, 
 for instance: `Localizable_zh-Hans-CN.strings` or
 `BMRideStartBottomBarView_it.strings"`. The locale is then recognised by 
@@ -69,6 +71,15 @@ The locale format is depending on the platform (e.g. simplified Chinese
 on iOS is `zh-Hans-CN`). Then you define your separator (`_` in the above
 example) to work with your local files and folders. The script 
 
+### Android
+
+Android differs in a way that they need an additional "r" in the name of the
+folders. For instace the Brazilian Portuguese locale folder looks like this:
+`src/main/res/values-pt-rBR`. 
+
+So for this reason we upload the strings files named  `strings-pt-rBR.xml`. The
+`lingohub` script then uses these locales in the file name when placing the
+new translations into the project.
 
 ## Build & Distribution
 
