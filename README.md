@@ -78,18 +78,19 @@ for instance: `Localizable_zh-Hans-CN.strings` or
 `BMRideStartBottomBarView_it.strings"`. The locale is then recognised by 
 LingoHub automatically.
 
-The locale format is depending on the platform (e.g. simplified Chinese
+The locale format depends on the platform (e.g. simplified Chinese
 on iOS is `zh-Hans-CN`). Then you define your separator (`_` in the above
-example) to work with your local files and folders. The script 
+example) to work with your local files and folders. 
 
 ### Android
 
 Android differs in a way that they need an additional "r" in the name of the
-folders. For instace the Brazilian Portuguese locale folder looks like this:
+folders, where the language is used in different countries. For instace the 
+Brazilian Portuguese locale folder looks like this:
 `src/main/res/values-pt-rBR`. 
 
-So for this reason we upload the strings files named  `strings-pt-rBR.xml`. The
-`lingohub` script then uses these locales in the file name when placing the
+So for this reason we upload the strings files named like `strings-pt-rBR.xml`. 
+The `lingohub` script then uses these locales in the file name when placing the
 new translations into the project.
 
 ## Build & Distribution
