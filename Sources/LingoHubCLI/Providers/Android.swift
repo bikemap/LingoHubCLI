@@ -77,7 +77,7 @@ open class Android: ResourceProvider {
       // folder name.
       let locale = resource
         .name
-        .replacingOccurrences(of: "strings-", with: "")
+        .replacingOccurrences(of: "strings_", with: "")
         .replacingOccurrences(of: ".xml", with: "")
 
       // We do not download the base locale.
@@ -110,7 +110,7 @@ open class Android: ResourceProvider {
       }
 
       // `locale` and name
-      destinationFolder += "/values-\(locale)/\(name)"
+      destinationFolder += "/values-\(locale)/strings.xml"
 
       let destinationUrl = URL(fileURLWithPath: destinationFolder)
 
