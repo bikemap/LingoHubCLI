@@ -77,7 +77,7 @@ open class Android: ResourceProvider {
       // folder name.
       let locale = resource
         .name
-        .replacingOccurrences(of: "strings-", with: "")
+        .replacingOccurrences(of: "strings\(self.config.separator)", with: "")
         .replacingOccurrences(of: ".xml", with: "")
 
       // We do not download the base locale.
