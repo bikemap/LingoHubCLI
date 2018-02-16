@@ -16,7 +16,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   override public init() {
 
-    guard CommandLine.argc > 2 else {
+    guard CommandLine.argc >= 1 else {
       LingoHubCLI.help()
       exit(EXIT_FAILURE)
     }

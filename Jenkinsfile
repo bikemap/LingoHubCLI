@@ -14,22 +14,25 @@ pipeline {
 
     stage('Building lingohub CLI') {
       steps {
-        sh "swift swift build -c release -Xswiftc -static-stdlib"
+        sh "swift build -c release -Xswiftc -static-stdlib"
       }
     }
 
     stage('Installing lingohub CLI') {
+      when {
+        expression {
+          env.BRANCH_NAME == 'master'
+        }
+      }
       steps {
         sh "cp -f ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI /usr/local/bin/lingohub"
+        sh "lingohub -v"
       }
     }
     
   }
 
   post {
-    always {
-
-    }
     success {
       notifyBuild()
     }
