@@ -15,6 +15,6 @@ let package = Package(
     // and on products in packages which this package depends on.
     .target(
       name: "LingoHubCLI",
-      dependencies: ["Alamofire", "Marshal"]),
+      dependencies: ["Marshal"]),
     ]
 )
