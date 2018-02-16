@@ -19,11 +19,11 @@ pipeline {
     }
 
     stage('Installing lingohub CLI') {
-      // when {
-      //   expression {
-      //     env.BRANCH_NAME == 'master'
-      //   }
-      // }
+      when {
+        expression {
+          env.BRANCH_NAME == 'master'
+        }
+      }
       steps {
         sh "cp -f .build/x86_64-apple-macosx10.10/release/LingoHubCLI /usr/local/bin/lingohub"
         sh "lingohub -v"
