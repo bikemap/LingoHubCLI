@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import Marshal
 
 /// The TASKs that can be performed using LungoHub. This can be specified as
@@ -49,7 +48,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   override public init() {
 
-    guard CommandLine.argc == 2 else {
+    guard CommandLine.argc > 2 else {
       LingoHubCLI.help()
       exit(EXIT_FAILURE)
     }
@@ -62,11 +61,11 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
       exit(EXIT_SUCCESS)
     }
 
-    // Reading the provider config
-    let currentDirectory = FileManager
-      .default
-      .currentDirectoryPath
-    let file = URL(fileURLWithPath: "\(currentDirectory)/.lingorc")
+    var lingorcLocation: String = CommandLine.arguments[2]
+    if lingorcLocation.count == 0 {
+      lingorcLocation = FileManager.default.currentDirectoryPath
+    }
+    let file = URL(fileURLWithPath: "\(lingorcLocation)/.lingorc")
     var config: ProviderConfig?
 
     do {
@@ -128,28 +127,39 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     let projectUrl = self.resourceProvider.projectUrl
     let resourcesEndPoint = "\(projectUrl)/resources?auth_token=" + config.token
 
-    Alamofire
-      .request(resourcesEndPoint)
-      .responseJSON { response in
-        guard let json = response.result.value as? [AnyHashable: Any] else {
-          print("invalid response:", response.result.value as Any)
-          exit(EXIT_FAILURE)
-        }
+    guard let resourcesURL: URL = URL.init(string: resourcesEndPoint) else {
+      print("Cannot create resourcesEndPoint URL")
+      exit(EXIT_FAILURE)
+    }
 
+    var urlRequest = URLRequest(url: resourcesURL)
+    urlRequest.httpMethod = "GET"
+
+    let session = URLSession(configuration: .default)
+    session
+      .dataTask(with: urlRequest) { data, _, error in
         do {
+          guard let rawData = data, let json = try JSONSerialization
+            .jsonObject(with: rawData) as? [AnyHashable: Any] else {
+              print("Cannot parse response", data ?? "nil", error ?? "nil")
+              exit(EXIT_FAILURE)
+          }
+
           let resources: [LingoHubResource] = try json.value(for: "members")
+
           // Saving resources locally
           self
             .resourceProvider
             .save(resources: resources) {
-              print("All files are downloaded.")
+              print("All files were downloaded.")
               exit(EXIT_SUCCESS)
             }
         } catch {
           print(error)
           exit(EXIT_FAILURE)
         }
-    }
+      }
+      .resume()
   }
 
   /// Uploads the files returned by the provider to LingoHub for translation
@@ -169,36 +179,41 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     let resourcesEndPoint = "\(projectUrl)/resources?auth_token=" +
       self.resourceProvider.config.token
 
+    guard let resourcesURL: URL = URL.init(string: resourcesEndPoint) else {
+      print("Cannot create resourcesEndPoint URL")
+      exit(EXIT_FAILURE)
+    }
+
     for file in files {
       let fileUrl = URL(fileURLWithPath: file)
       print("Uploading: \(file)")
 
-      Alamofire.upload(
-        multipartFormData: { multipartFormData in
-          multipartFormData
-            .append(fileUrl, withName: "file")
-      },
-        to: resourcesEndPoint,
-        encodingCompletion: { encodingResult in
-          switch encodingResult {
-          case .success(let upload, _, _):
-            upload.responseJSON { response in
+      let urlRequest = URLRequest
+        .multipartFromDataFileUploadRequest(
+          url: resourcesURL,
+          file: fileUrl)
 
-              uploadCount += 1
-              if uploadCount >= files.count {
-                print("All files uploaded.")
-                exit(EXIT_SUCCESS)
-              }
-            }
-          case .failure(let encodingError):
-            print(encodingError)
+      let session = URLSession(configuration: .default)
+      session
+        .dataTask(with: urlRequest) { (data, response, error) in
+
+          guard error == nil else {
+            print(error!)
             uploadCount += 1
             if uploadCount >= files.count {
               print("All files uploaded.")
               exit(EXIT_SUCCESS)
             }
+            return
           }
-      })
+
+          uploadCount += 1
+          if uploadCount >= files.count {
+            print("All files uploaded.")
+            exit(EXIT_SUCCESS)
+          }
+      }
+      .resume()
     }
   }
 }

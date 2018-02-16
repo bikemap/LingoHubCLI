@@ -10,6 +10,7 @@
 		0616464A1FCCC584009A03AD /* Android.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061646491FCCC584009A03AD /* Android.swift */; };
 		06E3853A1FCCB3CE00C7B752 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E385381FCCB3CE00C7B752 /* iOS.swift */; };
 		06E3853B1FCCB3CE00C7B752 /* ResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */; };
+		06F18D1B2037226B00604310 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F18D1A2037226B00604310 /* Extensions.swift */; };
 		OBJ_104 /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* AFError.swift */; };
 		OBJ_105 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* Alamofire.swift */; };
 		OBJ_106 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* DispatchQueue+Alamofire.swift */; };
@@ -70,6 +71,7 @@
 		061646491FCCC584009A03AD /* Android.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Android.swift; sourceTree = "<group>"; };
 		06E385381FCCB3CE00C7B752 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
 		06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
+		06F18D1A2037226B00604310 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		"Alamofire::Alamofire::Product" /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"LingoHubCLI::LingoHubCLI::Product" /* lingohub */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = lingohub; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Marshal::Marshal::Product" /* Marshal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -245,6 +247,7 @@
 				06E385371FCCB3CE00C7B752 /* Providers */,
 				OBJ_9 /* LingoHubResource.swift */,
 				OBJ_10 /* main.swift */,
+				06F18D1A2037226B00604310 /* Extensions.swift */,
 			);
 			name = LingoHubCLI;
 			path = Sources/LingoHubCLI;
@@ -289,6 +292,7 @@
 			buildPhases = (
 				OBJ_73 /* Sources */,
 				OBJ_76 /* Frameworks */,
+				06188CA620370A8900E1A6AC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -381,6 +385,16 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		06188CA620370A8900E1A6AC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		OBJ_103 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -436,6 +450,7 @@
 			files = (
 				0616464A1FCCC584009A03AD /* Android.swift in Sources */,
 				06E3853B1FCCB3CE00C7B752 /* ResourceProvider.swift in Sources */,
+				06F18D1B2037226B00604310 /* Extensions.swift in Sources */,
 				06E3853A1FCCB3CE00C7B752 /* iOS.swift in Sources */,
 				OBJ_74 /* LingoHubResource.swift in Sources */,
 				OBJ_75 /* main.swift in Sources */,

@@ -6,7 +6,6 @@ import PackageDescription
 let package = Package(
   name: "LingoHubCLI",
   dependencies: [
-    .package(url: "https://github.com/Alamofire/Alamofire.git", from: "4.0.0"),
     .package(url: "https://github.com/utahiosmac/Marshal.git", from: "1.2.4")
   ],
   targets: [
