@@ -7,31 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0616464A1FCCC584009A03AD /* Android.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061646491FCCC584009A03AD /* Android.swift */; };
-		06E3853A1FCCB3CE00C7B752 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E385381FCCB3CE00C7B752 /* iOS.swift */; };
-		06E3853B1FCCB3CE00C7B752 /* ResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */; };
-		06F18D1B2037226B00604310 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F18D1A2037226B00604310 /* Extensions.swift */; };
-		OBJ_56 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_62 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* Package.swift */; };
-		OBJ_74 /* LingoHubResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* LingoHubResource.swift */; };
-		OBJ_75 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* main.swift */; };
-		OBJ_77 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Marshal::Marshal::Product" /* Marshal.framework */; };
-		OBJ_87 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Error.swift */; };
-		OBJ_88 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* JSON.swift */; };
-		OBJ_89 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* KeyType.swift */; };
-		OBJ_90 /* MarshalDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* MarshalDictionary.swift */; };
-		OBJ_91 /* MarshaledObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* MarshaledObject.swift */; };
-		OBJ_92 /* Marshaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Marshaling.swift */; };
-		OBJ_93 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Migration.swift */; };
-		OBJ_94 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Operators.swift */; };
-		OBJ_95 /* UnmarshalUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* UnmarshalUpdating.swift */; };
-		OBJ_96 /* Unmarshaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* Unmarshaling.swift */; };
-		OBJ_97 /* UnmarshalingWithContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* UnmarshalingWithContext.swift */; };
-		OBJ_98 /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* ValueType.swift */; };
+		OBJ_42 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_48 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* Package.swift */; };
+		OBJ_54 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Extensions.swift */; };
+		OBJ_55 /* LingoHubCLI.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_10 /* LingoHubCLI.swift */; };
+		OBJ_56 /* LingoHubResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* LingoHubResource.swift */; };
+		OBJ_57 /* Android.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Android.swift */; };
+		OBJ_58 /* ResourceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_14 /* ResourceProvider.swift */; };
+		OBJ_59 /* iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_15 /* iOS.swift */; };
+		OBJ_60 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* main.swift */; };
+		OBJ_62 /* Marshal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "Marshal::Marshal::Product" /* Marshal.framework */; };
+		OBJ_69 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Error.swift */; };
+		OBJ_70 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* JSON.swift */; };
+		OBJ_71 /* KeyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* KeyType.swift */; };
+		OBJ_72 /* MarshalDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* MarshalDictionary.swift */; };
+		OBJ_73 /* MarshaledObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* MarshaledObject.swift */; };
+		OBJ_74 /* Marshaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* Marshaling.swift */; };
+		OBJ_75 /* Migration.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* Migration.swift */; };
+		OBJ_76 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_29 /* Operators.swift */; };
+		OBJ_77 /* UnmarshalUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* UnmarshalUpdating.swift */; };
+		OBJ_78 /* Unmarshaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_31 /* Unmarshaling.swift */; };
+		OBJ_79 /* UnmarshalingWithContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_32 /* UnmarshalingWithContext.swift */; };
+		OBJ_80 /* ValueType.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_33 /* ValueType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		06E385351FCCB36E00C7B752 /* PBXContainerItemProxy */ = {
+		06F18D1F2037932100604310 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -41,41 +42,42 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		061646481FCCBCF4009A03AD /* lingorc-sample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "lingorc-sample"; sourceTree = "<group>"; };
-		061646491FCCC584009A03AD /* Android.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Android.swift; sourceTree = "<group>"; };
-		06E385381FCCB3CE00C7B752 /* iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
-		06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
-		06F18D1A2037226B00604310 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		"LingoHubCLI::LingoHubCLI::Product" /* lingohub */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = lingohub; sourceTree = BUILT_PRODUCTS_DIR; };
+		"LingoHubCLI::LingoHubCLI::Product" /* LingoHubCLI */ = {isa = PBXFileReference; lastKnownFileType = text; path = LingoHubCLI; sourceTree = BUILT_PRODUCTS_DIR; };
 		"Marshal::Marshal::Product" /* Marshal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Marshal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		OBJ_10 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		OBJ_15 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/adameri/Developer/LingoHubCLI/.build/checkouts/Marshal.git-4636753813148167307/Package.swift"; sourceTree = "<group>"; };
-		OBJ_16 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		OBJ_17 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		OBJ_18 /* KeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyType.swift; sourceTree = "<group>"; };
-		OBJ_19 /* MarshalDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarshalDictionary.swift; sourceTree = "<group>"; };
-		OBJ_20 /* MarshaledObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarshaledObject.swift; sourceTree = "<group>"; };
-		OBJ_21 /* Marshaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marshaling.swift; sourceTree = "<group>"; };
-		OBJ_22 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
-		OBJ_23 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
-		OBJ_24 /* UnmarshalUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnmarshalUpdating.swift; sourceTree = "<group>"; };
-		OBJ_25 /* Unmarshaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unmarshaling.swift; sourceTree = "<group>"; };
-		OBJ_26 /* UnmarshalingWithContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnmarshalingWithContext.swift; sourceTree = "<group>"; };
-		OBJ_27 /* ValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
+		OBJ_10 /* LingoHubCLI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LingoHubCLI.swift; sourceTree = "<group>"; };
+		OBJ_11 /* LingoHubResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LingoHubResource.swift; sourceTree = "<group>"; };
+		OBJ_13 /* Android.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Android.swift; sourceTree = "<group>"; };
+		OBJ_14 /* ResourceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceProvider.swift; sourceTree = "<group>"; };
+		OBJ_15 /* iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS.swift; sourceTree = "<group>"; };
+		OBJ_16 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		OBJ_18 /* dist */ = {isa = PBXFileReference; lastKnownFileType = folder; path = dist; sourceTree = SOURCE_ROOT; };
+		OBJ_21 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Package.swift; path = "/Users/adameri/Developer/LingoHubCLI/.build/checkouts/Marshal.git-4636753813148167307/Package.swift"; sourceTree = "<group>"; };
+		OBJ_22 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		OBJ_23 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		OBJ_24 /* KeyType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyType.swift; sourceTree = "<group>"; };
+		OBJ_25 /* MarshalDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarshalDictionary.swift; sourceTree = "<group>"; };
+		OBJ_26 /* MarshaledObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarshaledObject.swift; sourceTree = "<group>"; };
+		OBJ_27 /* Marshaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marshaling.swift; sourceTree = "<group>"; };
+		OBJ_28 /* Migration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Migration.swift; sourceTree = "<group>"; };
+		OBJ_29 /* Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
+		OBJ_30 /* UnmarshalUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnmarshalUpdating.swift; sourceTree = "<group>"; };
+		OBJ_31 /* Unmarshaling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unmarshaling.swift; sourceTree = "<group>"; };
+		OBJ_32 /* UnmarshalingWithContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnmarshalingWithContext.swift; sourceTree = "<group>"; };
+		OBJ_33 /* ValueType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueType.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		OBJ_9 /* LingoHubResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LingoHubResource.swift; sourceTree = "<group>"; };
+		OBJ_9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		OBJ_76 /* Frameworks */ = {
+		OBJ_61 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_77 /* Marshal.framework in Frameworks */,
+				OBJ_62 /* Marshal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_99 /* Frameworks */ = {
+		OBJ_81 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
@@ -85,71 +87,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		06E385371FCCB3CE00C7B752 /* Providers */ = {
+		OBJ_12 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				061646481FCCBCF4009A03AD /* lingorc-sample */,
-				06E385381FCCB3CE00C7B752 /* iOS.swift */,
-				06E385391FCCB3CE00C7B752 /* ResourceProvider.swift */,
-				061646491FCCC584009A03AD /* Android.swift */,
+				OBJ_13 /* Android.swift */,
+				OBJ_14 /* ResourceProvider.swift */,
+				OBJ_15 /* iOS.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
 		};
-		OBJ_11 /* Tests */ = {
+		OBJ_17 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_13 /* Dependencies */ = {
+		OBJ_19 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_14 /* Marshal 1.2.4 */,
+				OBJ_20 /* Marshal 1.2.4 */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
 		};
-		OBJ_14 /* Marshal 1.2.4 */ = {
+		OBJ_20 /* Marshal 1.2.4 */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_15 /* Package.swift */,
-				OBJ_16 /* Error.swift */,
-				OBJ_17 /* JSON.swift */,
-				OBJ_18 /* KeyType.swift */,
-				OBJ_19 /* MarshalDictionary.swift */,
-				OBJ_20 /* MarshaledObject.swift */,
-				OBJ_21 /* Marshaling.swift */,
-				OBJ_22 /* Migration.swift */,
-				OBJ_23 /* Operators.swift */,
-				OBJ_24 /* UnmarshalUpdating.swift */,
-				OBJ_25 /* Unmarshaling.swift */,
-				OBJ_26 /* UnmarshalingWithContext.swift */,
-				OBJ_27 /* ValueType.swift */,
+				OBJ_21 /* Package.swift */,
+				OBJ_22 /* Error.swift */,
+				OBJ_23 /* JSON.swift */,
+				OBJ_24 /* KeyType.swift */,
+				OBJ_25 /* MarshalDictionary.swift */,
+				OBJ_26 /* MarshaledObject.swift */,
+				OBJ_27 /* Marshaling.swift */,
+				OBJ_28 /* Migration.swift */,
+				OBJ_29 /* Operators.swift */,
+				OBJ_30 /* UnmarshalUpdating.swift */,
+				OBJ_31 /* Unmarshaling.swift */,
+				OBJ_32 /* UnmarshalingWithContext.swift */,
+				OBJ_33 /* ValueType.swift */,
 			);
 			name = "Marshal 1.2.4";
 			path = ".build/checkouts/Marshal.git-4636753813148167307/Sources";
 			sourceTree = SOURCE_ROOT;
 		};
-		OBJ_47 /* Products */ = {
+		OBJ_34 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"LingoHubCLI::LingoHubCLI::Product" /* lingohub */,
+				"LingoHubCLI::LingoHubCLI::Product" /* LingoHubCLI */,
 				"Marshal::Marshal::Product" /* Marshal.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 = {
+		OBJ_5 /*  */ = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
-				OBJ_11 /* Tests */,
-				OBJ_13 /* Dependencies */,
-				OBJ_47 /* Products */,
+				OBJ_17 /* Tests */,
+				OBJ_18 /* dist */,
+				OBJ_19 /* Dependencies */,
+				OBJ_34 /* Products */,
 			);
+			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -163,10 +166,11 @@
 		OBJ_8 /* LingoHubCLI */ = {
 			isa = PBXGroup;
 			children = (
-				06E385371FCCB3CE00C7B752 /* Providers */,
-				OBJ_9 /* LingoHubResource.swift */,
-				OBJ_10 /* main.swift */,
-				06F18D1A2037226B00604310 /* Extensions.swift */,
+				OBJ_9 /* Extensions.swift */,
+				OBJ_10 /* LingoHubCLI.swift */,
+				OBJ_11 /* LingoHubResource.swift */,
+				OBJ_12 /* Providers */,
+				OBJ_16 /* main.swift */,
 			);
 			name = LingoHubCLI;
 			path = Sources/LingoHubCLI;
@@ -177,27 +181,26 @@
 /* Begin PBXNativeTarget section */
 		"LingoHubCLI::LingoHubCLI" /* LingoHubCLI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_70 /* Build configuration list for PBXNativeTarget "LingoHubCLI" */;
+			buildConfigurationList = OBJ_50 /* Build configuration list for PBXNativeTarget "LingoHubCLI" */;
 			buildPhases = (
-				OBJ_73 /* Sources */,
-				OBJ_76 /* Frameworks */,
-				06188CA620370A8900E1A6AC /* Resources */,
+				OBJ_53 /* Sources */,
+				OBJ_61 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				OBJ_79 /* PBXTargetDependency */,
+				OBJ_63 /* PBXTargetDependency */,
 			);
 			name = LingoHubCLI;
 			productName = LingoHubCLI;
-			productReference = "LingoHubCLI::LingoHubCLI::Product" /* lingohub */;
+			productReference = "LingoHubCLI::LingoHubCLI::Product" /* LingoHubCLI */;
 			productType = "com.apple.product-type.tool";
 		};
 		"LingoHubCLI::SwiftPMPackageDescription" /* LingoHubCLIPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_52 /* Build configuration list for PBXNativeTarget "LingoHubCLIPackageDescription" */;
+			buildConfigurationList = OBJ_38 /* Build configuration list for PBXNativeTarget "LingoHubCLIPackageDescription" */;
 			buildPhases = (
-				OBJ_55 /* Sources */,
+				OBJ_41 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -209,10 +212,10 @@
 		};
 		"Marshal::Marshal" /* Marshal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_83 /* Build configuration list for PBXNativeTarget "Marshal" */;
+			buildConfigurationList = OBJ_65 /* Build configuration list for PBXNativeTarget "Marshal" */;
 			buildPhases = (
-				OBJ_86 /* Sources */,
-				OBJ_99 /* Frameworks */,
+				OBJ_68 /* Sources */,
+				OBJ_81 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -225,9 +228,9 @@
 		};
 		"Marshal::SwiftPMPackageDescription" /* MarshalPackageDescription */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = OBJ_58 /* Build configuration list for PBXNativeTarget "MarshalPackageDescription" */;
+			buildConfigurationList = OBJ_44 /* Build configuration list for PBXNativeTarget "MarshalPackageDescription" */;
 			buildPhases = (
-				OBJ_61 /* Sources */,
+				OBJ_47 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -244,12 +247,6 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 9999;
-				TargetAttributes = {
-					"LingoHubCLI::LingoHubCLI" = {
-						DevelopmentTeam = G9EB5WLV5Z;
-						ProvisioningStyle = Automatic;
-					};
-				};
 			};
 			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "LingoHubCLI" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -258,8 +255,8 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5;
-			productRefGroup = OBJ_47 /* Products */;
+			mainGroup = OBJ_5 /*  */;
+			productRefGroup = OBJ_34 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -271,72 +268,63 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		06188CA620370A8900E1A6AC /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		OBJ_55 /* Sources */ = {
+		OBJ_41 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_56 /* Package.swift in Sources */,
+				OBJ_42 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_61 /* Sources */ = {
+		OBJ_47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_62 /* Package.swift in Sources */,
+				OBJ_48 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_73 /* Sources */ = {
+		OBJ_53 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				0616464A1FCCC584009A03AD /* Android.swift in Sources */,
-				06E3853B1FCCB3CE00C7B752 /* ResourceProvider.swift in Sources */,
-				06F18D1B2037226B00604310 /* Extensions.swift in Sources */,
-				06E3853A1FCCB3CE00C7B752 /* iOS.swift in Sources */,
-				OBJ_74 /* LingoHubResource.swift in Sources */,
-				OBJ_75 /* main.swift in Sources */,
+				OBJ_54 /* Extensions.swift in Sources */,
+				OBJ_55 /* LingoHubCLI.swift in Sources */,
+				OBJ_56 /* LingoHubResource.swift in Sources */,
+				OBJ_57 /* Android.swift in Sources */,
+				OBJ_58 /* ResourceProvider.swift in Sources */,
+				OBJ_59 /* iOS.swift in Sources */,
+				OBJ_60 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		OBJ_86 /* Sources */ = {
+		OBJ_68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_87 /* Error.swift in Sources */,
-				OBJ_88 /* JSON.swift in Sources */,
-				OBJ_89 /* KeyType.swift in Sources */,
-				OBJ_90 /* MarshalDictionary.swift in Sources */,
-				OBJ_91 /* MarshaledObject.swift in Sources */,
-				OBJ_92 /* Marshaling.swift in Sources */,
-				OBJ_93 /* Migration.swift in Sources */,
-				OBJ_94 /* Operators.swift in Sources */,
-				OBJ_95 /* UnmarshalUpdating.swift in Sources */,
-				OBJ_96 /* Unmarshaling.swift in Sources */,
-				OBJ_97 /* UnmarshalingWithContext.swift in Sources */,
-				OBJ_98 /* ValueType.swift in Sources */,
+				OBJ_69 /* Error.swift in Sources */,
+				OBJ_70 /* JSON.swift in Sources */,
+				OBJ_71 /* KeyType.swift in Sources */,
+				OBJ_72 /* MarshalDictionary.swift in Sources */,
+				OBJ_73 /* MarshaledObject.swift in Sources */,
+				OBJ_74 /* Marshaling.swift in Sources */,
+				OBJ_75 /* Migration.swift in Sources */,
+				OBJ_76 /* Operators.swift in Sources */,
+				OBJ_77 /* UnmarshalUpdating.swift in Sources */,
+				OBJ_78 /* Unmarshaling.swift in Sources */,
+				OBJ_79 /* UnmarshalingWithContext.swift in Sources */,
+				OBJ_80 /* ValueType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		OBJ_79 /* PBXTargetDependency */ = {
+		OBJ_63 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Marshal::Marshal" /* Marshal */;
-			targetProxy = 06E385351FCCB36E00C7B752 /* PBXContainerItemProxy */;
+			targetProxy = 06F18D1F2037932100604310 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -351,7 +339,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -360,6 +348,15 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -372,7 +369,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_OPTIMIZATION_LEVEL = s;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_SWIFT_FLAGS = "-DXcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -383,16 +380,7 @@
 			};
 			name = Release;
 		};
-		OBJ_53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				LD = /usr/bin/true;
-				OTHER_SWIFT_FLAGS = "-swift-version 4 -I /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/pm/4 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		OBJ_54 /* Release */ = {
+		OBJ_40 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -401,7 +389,7 @@
 			};
 			name = Release;
 		};
-		OBJ_59 /* Debug */ = {
+		OBJ_45 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -410,7 +398,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_60 /* Release */ = {
+		OBJ_46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD = /usr/bin/true;
@@ -419,12 +407,9 @@
 			};
 			name = Release;
 		};
-		OBJ_71 /* Debug */ = {
+		OBJ_51 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G9EB5WLV5Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -432,11 +417,8 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LingoHubCLI.xcodeproj/LingoHubCLI_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_NAME = lingohub;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 4.0;
@@ -444,12 +426,9 @@
 			};
 			name = Debug;
 		};
-		OBJ_72 /* Release */ = {
+		OBJ_52 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G9EB5WLV5Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -457,11 +436,8 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LingoHubCLI.xcodeproj/LingoHubCLI_Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx @executable_path";
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				OTHER_LDFLAGS = "$(inherited)";
 				OTHER_SWIFT_FLAGS = "$(inherited)";
-				PRODUCT_NAME = lingohub;
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_FORCE_DYNAMIC_LINK_STDLIB = YES;
 				SWIFT_FORCE_STATIC_LINK_STDLIB = NO;
 				SWIFT_VERSION = 4.0;
@@ -469,7 +445,7 @@
 			};
 			name = Release;
 		};
-		OBJ_84 /* Debug */ = {
+		OBJ_66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -491,7 +467,7 @@
 			};
 			name = Debug;
 		};
-		OBJ_85 /* Release */ = {
+		OBJ_67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ENABLE_TESTABILITY = YES;
@@ -525,38 +501,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_52 /* Build configuration list for PBXNativeTarget "LingoHubCLIPackageDescription" */ = {
+		OBJ_38 /* Build configuration list for PBXNativeTarget "LingoHubCLIPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_53 /* Debug */,
-				OBJ_54 /* Release */,
+				OBJ_39 /* Debug */,
+				OBJ_40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_58 /* Build configuration list for PBXNativeTarget "MarshalPackageDescription" */ = {
+		OBJ_44 /* Build configuration list for PBXNativeTarget "MarshalPackageDescription" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_59 /* Debug */,
-				OBJ_60 /* Release */,
+				OBJ_45 /* Debug */,
+				OBJ_46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_70 /* Build configuration list for PBXNativeTarget "LingoHubCLI" */ = {
+		OBJ_50 /* Build configuration list for PBXNativeTarget "LingoHubCLI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_71 /* Debug */,
-				OBJ_72 /* Release */,
+				OBJ_51 /* Debug */,
+				OBJ_52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		OBJ_83 /* Build configuration list for PBXNativeTarget "Marshal" */ = {
+		OBJ_65 /* Build configuration list for PBXNativeTarget "Marshal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				OBJ_84 /* Debug */,
-				OBJ_85 /* Release */,
+				OBJ_66 /* Debug */,
+				OBJ_67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

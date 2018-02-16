@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "LingoHubCLI::LingoHubCLI"
-               BuildableName = "lingohub"
+               BuildableName = "LingoHubCLI"
                BlueprintName = "LingoHubCLI"
                ReferencedContainer = "container:LingoHubCLI.xcodeproj">
             </BuildableReference>
@@ -31,20 +31,6 @@
                BlueprintIdentifier = "Marshal::Marshal"
                BuildableName = "Marshal.framework"
                BlueprintName = "Marshal"
-               ReferencedContainer = "container:LingoHubCLI.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Alamofire::Alamofire"
-               BuildableName = "Alamofire.framework"
-               BlueprintName = "Alamofire"
                ReferencedContainer = "container:LingoHubCLI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -76,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "LingoHubCLI::LingoHubCLI"
-            BuildableName = "lingohub"
+            BuildableName = "LingoHubCLI"
             BlueprintName = "LingoHubCLI"
             ReferencedContainer = "container:LingoHubCLI.xcodeproj">
          </BuildableReference>

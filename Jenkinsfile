@@ -1,13 +1,8 @@
 #!groovy
 
-// The name consists of the job's name and the build number.
-// It is used to name the docker container and should be unique.
-def name = "${env.JOB_NAME}-${BUILD_NUMBER}".replaceAll("/","-")
-
 pipeline {
   agent {
-    // The label of the jenkins slave node
-    label 'aws-build-node'
+    label 'mac-mini'
   }
 
   stages {
@@ -19,15 +14,21 @@ pipeline {
 
     stage('Building lingohub CLI') {
       steps {
-        sh "docker run --name ${name} -v ${env.WORKSPACE}:/app swift swift build -c release -Xswiftc -static-stdlib"
+        sh "swift swift build -c release -Xswiftc -static-stdlib"
       }
     }
+
+    stage('Installing lingohub CLI') {
+      steps {
+        sh "cp -f ./.build/x86_64-apple-macosx10.10/release/LingoHubCLI /usr/local/bin/lingohub"
+      }
+    }
+    
   }
 
   post {
     always {
-      // Stops and deletes container
-      sh "docker stop ${name} && docker rm ${name}"
+
     }
     success {
       notifyBuild()
