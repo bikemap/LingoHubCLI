@@ -8,16 +8,18 @@
 import Foundation
 
 extension NSMutableData {
-  func appendString(_ string: String) {
+  /// Convenience method for appending a string as Data.
+  public func appendString(_ string: String) {
     let data = string.data(
       using: String.Encoding.utf8,
       allowLossyConversion: false)
-    append(data!)
+    self.append(data!)
   }
 }
 
 extension URLRequest {
 
+  /// Convenience method for creating a multipart/form URLRequest.
   public static func multipartFromDataFileUploadRequest(
     url: URL,
     file: URL,
@@ -40,6 +42,8 @@ extension URLRequest {
     return urlRequest
   }
 
+  /// Convenience method for creating  the httpBody for the multipart/form 
+  /// URLRequest and attaching the file.
   public static func createBody(
     parameters: [String: String],
     boundary: String,

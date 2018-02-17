@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A provider for handling translated resources for iOS projects.
 open class iOS: ResourceProvider {
 
   public var config: ProviderConfig

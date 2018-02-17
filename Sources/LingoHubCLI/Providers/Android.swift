@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// A provider for handling translated resources for Android projects.
 open class Android: ResourceProvider {
 
   public var config: ProviderConfig
