@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import Alamofire
 
+/// A provider for handling translated resources for iOS projects.
 open class iOS: ResourceProvider {
 
   public var config: ProviderConfig
@@ -39,7 +39,7 @@ open class iOS: ResourceProvider {
 
     // `translationFolder`
     if config.translationFolder != nil {
-      stringsFolder += config.translationFolder!
+      stringsFolder += "/" + config.translationFolder!
     }
 
     // `baseLocale`
@@ -68,12 +68,14 @@ open class iOS: ResourceProvider {
     var downloadCount: Int = 0
 
     for resource in resources {
-      guard let downloadUrl = resource.links.first?.href else {
+      guard var downloadUrl: String = resource.links.first?.href else {
         print("No download url for resource: \(resource)")
         continue
       }
 
-      let locale = resource.locale
+      downloadUrl += "?auth_token=" + self.config.token
+
+      let locale: String = resource.locale
       // We do not download the base locale.
       guard locale != self.config.baseLocale else {
         continue
@@ -81,7 +83,7 @@ open class iOS: ResourceProvider {
 
       // Removing locale from the resource name
       // Localizable.de.strings -> Localizable.strings
-      let name = resource
+      let name: String = resource
         .name
         .replacingOccurrences(
           of: "\(self.config.separator)\(locale).strings",
@@ -95,7 +97,7 @@ open class iOS: ResourceProvider {
       // - an optional absolute `projectFolder`, defaults to the current folder.
       // - an optional `translationFolder` within the `projectFolder`
       // - a mandatory `baseLocale`, from which the `lproj` folder can be found
-      var destinationFolder = config.projectFolder ??
+      var destinationFolder: String = config.projectFolder ??
         FileManager.default.currentDirectoryPath
       
       // `translationFolder`
@@ -106,32 +108,50 @@ open class iOS: ResourceProvider {
       // `locale` and name
       destinationFolder += "/\(locale).lproj/\(name)"
 
-      let destinationUrl = URL(fileURLWithPath: destinationFolder)
-
-      let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-        return (destinationUrl, [
-          .removePreviousFile,
-          .createIntermediateDirectories])
-      }
+      let destinationUrl: URL = URL(fileURLWithPath: destinationFolder)
 
       downloadCount += 1
 
-      Alamofire
-        .download(
-          downloadUrl + "?auth_token=" + self.config.token,
-          to: destination)
-        .response { response in
-
-          if response.error == nil,
-            let filePath = response.destinationURL?.path {
-            print("Downloaded: ", filePath)
-          }
-
-          downloadCount -= 1
-          if downloadCount == 0 {
-            completion()
-          }
+      guard let resourcesURL: URL = URL.init(string: downloadUrl) else {
+        print("Cannot create resourcesEndPoint URL")
+        exit(EXIT_FAILURE)
       }
+
+      var urlRequest: URLRequest = URLRequest(url: resourcesURL)
+      urlRequest.httpMethod = "GET"
+
+      let session: URLSession = URLSession(configuration: .default)
+      session
+        .downloadTask(
+          with: urlRequest,
+          completionHandler: { tmpURL, response, error in
+
+            guard error == nil, tmpURL != nil else {
+              print(error!)
+              exit(EXIT_FAILURE)
+            }
+
+            do {
+              if FileManager
+                .default
+                .fileExists(atPath: destinationUrl.relativePath) {
+                  try FileManager.default.removeItem(at: destinationUrl)
+              }
+
+              try FileManager.default.moveItem(at: tmpURL!, to: destinationUrl)
+
+              print("Downloaded: ", destinationUrl)
+              downloadCount -= 1
+
+              if downloadCount == 0 {
+                completion()
+              }
+            } catch {
+              print(error)
+              exit(EXIT_FAILURE)
+            }
+        })
+      .resume()
     }
   }
 }
