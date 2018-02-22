@@ -127,13 +127,19 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
     let session = URLSession(configuration: .default)
     session
-      .dataTask(with: urlRequest) { data, _, error in
+      .dataTask(with: urlRequest) { data, response, error in
         do {
 
           /// Deserialising the received resource objects.
           guard let rawData = data, let json = try JSONSerialization
             .jsonObject(with: rawData) as? [AnyHashable: Any] else {
               print("Cannot parse response", data ?? "nil", error ?? "nil")
+              exit(EXIT_FAILURE)
+          }
+
+          guard let res: HTTPURLResponse = response as? HTTPURLResponse,
+            200 ... 299 ~= res.statusCode else {
+              print(response ?? "No response")
               exit(EXIT_FAILURE)
           }
 

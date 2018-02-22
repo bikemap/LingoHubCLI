@@ -135,6 +135,12 @@ open class Android: ResourceProvider {
               exit(EXIT_FAILURE)
             }
 
+            guard let res: HTTPURLResponse = response as? HTTPURLResponse,
+              200 ... 299 ~= res.statusCode else {
+              print(response ?? "No response")
+              exit(EXIT_FAILURE)
+            }
+
             do {
               if FileManager
                 .default
