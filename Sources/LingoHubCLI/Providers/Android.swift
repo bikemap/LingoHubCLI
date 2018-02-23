@@ -65,10 +65,12 @@ open class Android: ResourceProvider {
     var downloadCount: Int = 0
 
     for resource in resources {
-      guard let downloadUrl: String = resource.links.first?.href else {
+      guard var downloadUrl: String = resource.links.first?.href else {
         print("No download url for resource: \(resource)")
         continue
       }
+
+      downloadUrl += "?auth_token=" + self.config.token
 
       // The project locale and the locale in the filename are differnet for
       // Android.
