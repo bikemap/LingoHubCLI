@@ -39,7 +39,7 @@ open class iOS: ResourceProvider {
 
     // `translationFolder`
     if config.translationFolder != nil {
-      stringsFolder += "/" + config.translationFolder!
+      stringsFolder += "/\(config.translationFolder!)"
     }
 
     // `baseLocale`
@@ -59,7 +59,6 @@ open class iOS: ResourceProvider {
     }
     return stringsFiles
   }
-
 
   public func save(
     resources: [LingoHubResource],
@@ -102,7 +101,7 @@ open class iOS: ResourceProvider {
       
       // `translationFolder`
       if config.translationFolder != nil {
-        destinationFolder += config.translationFolder!
+        destinationFolder += "/\(config.translationFolder!)"
       }
       
       // `locale` and name

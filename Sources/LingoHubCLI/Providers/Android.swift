@@ -38,7 +38,7 @@ open class Android: ResourceProvider {
 
     // `translationFolder`
     if config.translationFolder != nil {
-      stringsFolder += config.translationFolder!
+      stringsFolder += "/\(config.translationFolder!)"
     }
 
     // `baseLocale`
@@ -108,7 +108,7 @@ open class Android: ResourceProvider {
 
       // `translationFolder`
       if config.translationFolder != nil {
-        destinationFolder += config.translationFolder!
+        destinationFolder += "/\(config.translationFolder!)"
       }
 
       // `locale` and name

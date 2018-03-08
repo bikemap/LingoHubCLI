@@ -11,7 +11,7 @@ import Foundation
 open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   /// The current version of the tool.
-  private static let version: String = "1.1.0"
+  private static let version: String = "1.2.1"
 
   /// The tasks to be performed. Default is the .help.
   private var task: Task = .help
@@ -40,7 +40,8 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     }
 
     /// The default path for the `.lingorc` file is the current folder.
-    var lingorcLocation: String = FileManager.default.currentDirectoryPath
+    var lingorcLocation: String =
+      FileManager.default.currentDirectoryPath.appending("/.lingorc")
 
     /// But it is possible to overwrite it with a 2nd argument passed to the
     /// command: `swift download /path/to/project`
@@ -48,7 +49,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
       lingorcLocation = CommandLine.arguments[2]
     }
 
-    let file = URL(fileURLWithPath: "\(lingorcLocation)/.lingorc")
+    let file = URL(fileURLWithPath: lingorcLocation)
     var config: ProviderConfig?
 
     /// Reading and deserialising the configuration from lingorc.
@@ -80,9 +81,14 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
 
   /// Prints usage information to the console.
   private static func help() {
+    LingoHubCLI.printVersion()
+
     print(
-      "Possible tasks are upload and download.",
+      "Possible tasks are: upload and download.",
       "\nExample: $ lingohub upload",
+      "\n\n",
+      "Optinally add config file location as third argument:",
+      "\n$ lingohub download /path/to/.lingorc",
       "\n\n")
   }
 
