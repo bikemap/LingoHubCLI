@@ -2,7 +2,7 @@
 
 pipeline {
   agent {
-    label 'mac-mini'
+    label 'macos'
   }
 
   stages {
