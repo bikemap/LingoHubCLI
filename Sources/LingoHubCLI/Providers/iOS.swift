@@ -82,13 +82,18 @@ open class iOS: ResourceProvider {
 
       // Removing locale from the resource name
       // Localizable.de.strings -> Localizable.strings
+      // also removes .locale additionally to configured seperator, which appears to be _ for no reason.
       let name: String = resource
         .name
         .replacingOccurrences(
           of: "\(self.config.separator)\(locale).strings",
           with: ".strings",
           options: String.CompareOptions.caseInsensitive,
-          range: nil)
+          range: nil).replacingOccurrences(
+            of: ".\(locale).strings",
+            with: ".strings",
+            options: String.CompareOptions.caseInsensitive,
+            range: nil)
 
       // Making the download destination
 
@@ -137,6 +142,8 @@ open class iOS: ResourceProvider {
             }
 
             do {
+                // debug: create folder for it first.
+                //try FileManager.default.createDirectory(at: destinationUrl, withIntermediateDirectories: true, attributes: nil)
               if FileManager
                 .default
                 .fileExists(atPath: destinationUrl.relativePath) {
