@@ -191,6 +191,15 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
       print("Cannot create resourcesEndPoint URL")
       exit(EXIT_FAILURE)
     }
+    
+    /// In each file we delete placeholder labels marked with <>,
+    /// for example "40T-H6-yFf.text" = "<Save 50%>";
+    /// because we don't need to translate them.
+    /// They will be set during runtime and real translations
+    /// are stored in Localizable.strings file.
+    for file in files {
+      self.stripPlaceholderLabels(for: file)
+    }
 
     /// For every file we create a multipart/form request.
     for file in files {
@@ -225,4 +234,44 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
         .resume()
     }
   }
+  
+  func stripPlaceholderLabels(for path: String) {
+    var sourceLocalizations: [String] = []
+    var cleanedLocalizations: [String] = []
+    do {
+      // Get the content
+      let contents = try NSString(contentsOfFile: path,
+                                  encoding: String.Encoding.utf8.rawValue)
+      sourceLocalizations = contents.components(separatedBy: "\n")
+    } catch let error as NSError {
+      print("Can't read file: \(error)")
+      exit(EXIT_FAILURE)
+    }
+    guard sourceLocalizations.count > 0 else {
+      return
+    }
+    var i = 0
+    while i < sourceLocalizations.count {
+      let localization = sourceLocalizations[i]
+      // In case of <> detection we ignore comment, localization itself
+      // and next empty line
+      if localization.range(of: #"<.+>"#, options: .regularExpression) != nil {
+        i += 3
+        continue
+      }
+      cleanedLocalizations.append(localization)
+      i += 1
+    }
+    let cleanedContent = cleanedLocalizations.joined(separator: "\n")
+    let pathURL = URL(fileURLWithPath: path)
+    do {
+      // Save the filtered content
+      try cleanedContent.write(to: pathURL, atomically: false,
+                               encoding: String.Encoding.utf8)
+    } catch let error as NSError {
+      print("Can't write file: \(error)")
+      exit(EXIT_FAILURE)
+    }
+  }
+  
 }
