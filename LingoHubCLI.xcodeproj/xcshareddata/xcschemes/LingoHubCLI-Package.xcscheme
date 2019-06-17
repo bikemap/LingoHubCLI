@@ -55,7 +55,15 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "download"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "upload"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "/Data/Bikemap/LingoHubCLI/.lingorc"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "/Users/patrick/Documents/localgit/LingoHubCLI/.lingorc"

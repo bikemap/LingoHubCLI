@@ -253,14 +253,19 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     var i = 0
     while i < sourceLocalizations.count {
       let localization = sourceLocalizations[i]
-      // In case of <> detection we ignore comment, localization itself
-      // and next empty line
+      i += 1
+      // In case of <> detection we line
       if localization.range(of: #"<.+>"#, options: .regularExpression) != nil {
-        i += 3
+        // If next line after ignored one is empty we jump over it
+        if i < sourceLocalizations.count {
+          let nextLine = sourceLocalizations[i]
+          if nextLine.count == 0 {
+            i += 1
+          }
+        }
         continue
       }
       cleanedLocalizations.append(localization)
-      i += 1
     }
     let cleanedContent = cleanedLocalizations.joined(separator: "\n")
     let pathURL = URL(fileURLWithPath: path)
