@@ -75,10 +75,6 @@ open class iOS: ResourceProvider {
       downloadUrl += "?auth_token=" + self.config.token
 
       let locale: String = resource.locale
-      // We do not download the base locale.
-      guard locale != self.config.baseLocale else {
-        continue
-      }
 
       // Removing locale from the resource name
       // Localizable.de.strings -> Localizable.strings

@@ -200,6 +200,7 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     for file in files {
       self.stripPlaceholderLabels(for: file)
     }
+    print("Clean up done...")
 
     /// For every file we create a multipart/form request.
     for file in files {
@@ -236,38 +237,44 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
   }
   
   func stripPlaceholderLabels(for path: String) {
-    var sourceLocalizations: [String] = []
-    var cleanedLocalizations: [String] = []
-    do {
       // Get the content
-      let contents = try NSString(contentsOfFile: path,
-                                  encoding: String.Encoding.utf8.rawValue)
-      sourceLocalizations = contents.components(separatedBy: "\n")
-    } catch let error as NSError {
-      print("Can't read file: \(error)")
-      exit(EXIT_FAILURE)
+    let url = URL(fileURLWithPath: path)
+    let optionalStringsDict = NSDictionary(contentsOf: url) as? [String: String]
+    
+    guard let stringsDict = optionalStringsDict else {
+        print("Can't read file: \(path)")
+        exit(EXIT_FAILURE)
     }
-    guard sourceLocalizations.count > 0 else {
+    
+    guard stringsDict.count > 0 else {
       return
     }
-    var i = 0
-    while i < sourceLocalizations.count {
-      let localization = sourceLocalizations[i]
-      i += 1
-      // In case of <> detection we line
-      if localization.range(of: #"<.+>"#, options: .regularExpression) != nil {
-        // If next line after ignored one is empty we jump over it
-        if i < sourceLocalizations.count {
-          let nextLine = sourceLocalizations[i]
-          if nextLine.count == 0 {
-            i += 1
-          }
-        }
-        continue
-      }
-      cleanedLocalizations.append(localization)
+//    var i = 0
+//    while i < sourceLocalizations.count {
+//      let localization = sourceLocalizations[i]
+//      i += 1
+//      // In case of <> detection we line
+//      if localization.range(of: #"<.+>"#, options: .regularExpression) != nil {
+//        // If next line after ignored one is empty we jump over it
+//        if i < sourceLocalizations.count {
+//          let nextLine = sourceLocalizations[i]
+//          if nextLine.count == 0 {
+//            i += 1
+//          }
+//        }
+//        continue
+//      }
+//      cleanedLocalizations.append(localization)
+//    }
+    
+    let filteredStringsDict = stringsDict.filter { (key, value) -> Bool in
+        return !(key.first == "<" && key.last == ">") && !(value.first == "<" && value.last == ">")
     }
-    let cleanedContent = cleanedLocalizations.joined(separator: "\n")
+    var cleanedContent = ""
+    
+    for (key, value) in filteredStringsDict {
+        cleanedContent.append("\"\(key)\" = \"\(value)\";\n")
+    }
     let pathURL = URL(fileURLWithPath: path)
     do {
       // Save the filtered content
