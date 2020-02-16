@@ -249,23 +249,6 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
     guard stringsDict.count > 0 else {
       return
     }
-//    var i = 0
-//    while i < sourceLocalizations.count {
-//      let localization = sourceLocalizations[i]
-//      i += 1
-//      // In case of <> detection we line
-//      if localization.range(of: #"<.+>"#, options: .regularExpression) != nil {
-//        // If next line after ignored one is empty we jump over it
-//        if i < sourceLocalizations.count {
-//          let nextLine = sourceLocalizations[i]
-//          if nextLine.count == 0 {
-//            i += 1
-//          }
-//        }
-//        continue
-//      }
-//      cleanedLocalizations.append(localization)
-//    }
     
     let filteredStringsDict = stringsDict.filter { (key, value) -> Bool in
         return !(key.first == "<" && key.last == ">") && !(value.first == "<" && value.last == ">")
