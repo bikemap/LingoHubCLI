@@ -254,9 +254,12 @@ open class LingoHubCLI: NSObject, URLSessionDelegate, URLSessionDataDelegate {
         return !(key.first == "<" && key.last == ">") && !(value.first == "<" && value.last == ">")
     }
     var cleanedContent = ""
-    
     for (key, value) in filteredStringsDict {
-        cleanedContent.append("\"\(key)\" = \"\(value)\";\n")
+        if key.hasPrefix("test") || value.hasPrefix("test") {
+            print("Found test value: '\(key)' '\(value)'")
+            print("\"\(key.withEscapedNewlines)\" = \"\(value.withEscapedNewlines)\";\n")
+        }
+        cleanedContent.append("\"\(key.withEscapedNewlines)\" = \"\(value.withEscapedNewlines)\";\n")
     }
     let pathURL = URL(fileURLWithPath: path)
     do {

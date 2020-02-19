@@ -17,6 +17,13 @@ extension NSMutableData {
   }
 }
 
+
+extension String {
+    var withEscapedNewlines: String {
+        return self.replacingOccurrences(of: "\n", with: "\\n")
+    }
+}
+
 extension URLRequest {
 
   /// Convenience method for creating a multipart/form URLRequest.
